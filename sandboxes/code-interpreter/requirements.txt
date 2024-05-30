@@ -27,3 +27,4 @@ numpy
 openpyxl
 joblib
 urllib3
+security==1.2.1

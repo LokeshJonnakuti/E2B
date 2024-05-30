@@ -14,6 +14,7 @@ from e2b.sandbox.filesystem import FilesystemManager
 from e2b.sandbox.process import ProcessManager, ProcessMessage
 from e2b.sandbox.sandbox_connection import SandboxConnection
 from e2b.sandbox.terminal import TerminalManager
+from security import safe_requests
 
 logger = logging.getLogger(__name__)
 
@@ -278,7 +279,7 @@ class Sandbox(SandboxConnection):
         """
         encoded_path = urllib.parse.quote(remote_path)
         url = f"{self.file_url()}?path={encoded_path}"
-        r = requests.get(url, timeout=timeout)
+        r = safe_requests.get(url, timeout=timeout)
 
         if r.status_code != 200:
             raise Exception(
